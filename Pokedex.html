@@ -1,0 +1,229 @@
+<!DOCTYPE HTML/>
+<html>
+<head>
+  <title>Pokedex</title>
+  <meta charset="utf-8"/>
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    
+    p {
+      text-align: center;
+    }
+    
+    ul, li {
+      list-style-type: none;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+      
+    #container {
+      position: relative;
+      height: calc(100% - 1em);
+      width: 100%;
+      background-image: url(electronic-blue-background.jpg);
+      background-size: cover;
+    }
+    
+    /*Navigation Bar*/
+    
+    #navigationBar {
+      height: 1em;
+      background-color: #c40016;
+      color: white;
+    }
+    
+    nav span {
+      float:right;
+      padding-right: 5%;
+    }
+
+    /*Cover Page*/
+    
+    #pokeball {
+      display: block;
+      position: absolute;
+      float:left;
+      height: 20vh;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+    }
+    .pokedexcover {
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      background-image: url(1327819-bigthumbnail.jpg);
+      background-size: cover;
+    }
+    #pokedexcoverleft {
+      float:left;
+      padding-left: 0;
+      left: 0px;
+    }
+    #pokedexcoverright {
+      float: right;
+      padding-right: 0;
+      right: 0px;
+    }
+    
+    /*Content Style*/
+    
+    #leftContainer {
+      float:left;
+      height: 100%;
+      padding-left: 10%;
+      padding-right: 5%;
+      width: 25%;
+    }
+    
+    #pokemonPicture {
+      margin: 0 auto;
+      display: block;
+      width: 50%;
+    }
+    
+    #pokemonName {
+      font-size: 24pt;
+      margin-bottom: 0;
+    }
+    
+    #pokemonId {
+      font-size: 24pt;
+      margin-top: 0;
+    }
+    /*Stats Container*/
+    
+    #rightContainer {
+      float:right;
+      height: calc(100%-1em);
+      padding-right: 15%;
+      padding-left: 2%;
+      width: 30%;
+    }
+    
+    #pokemonStatContainer {
+      margin-top:5%;
+      margin-left:auto;
+      margin-right:auto;
+      display: block;
+      border: 2px solid #26e0ec;
+      width: 100%;
+      background-color: #145cd2;
+    }
+    
+    .button {
+      text-align: center;
+      width: 25%;
+      height: 10%;
+      border-radius: 50px;
+      margin: 0 auto;
+      margin-left: 15%;
+      display: inline-block;
+      margin-right: 1em;
+      margin-top: 1em;
+      line-height: 3.5em;
+      color: white;
+      background-color: #145cd2;
+    }
+    
+    #stats {
+      margin-top: 20%;
+      margin-left: 40%;
+    }
+  </style>
+</head>
+<body>
+  <nav id=navigationBar>Pokedex
+    <span>Squirtle</span>
+    <span>Charmander</span>
+    <span>Bulbasaur</span>
+
+  </nav>
+  <div id=container>
+  
+    <!--This is the cover that disappears on click-->
+    <div class=pokedexcover id=pokedexcoverleft>
+    </div>
+    <div class=pokedexcover id=pokedexcoverright>
+    </div>
+    <img id=pokeball src="Pokeball-PNG-Transparent-Image.png" alt="pokeball_button">
+    
+    <!--This is the core content-->
+    <div id=leftContainer>
+      <br/><br/><br/><br/><br/>
+      <p id=pokemonName>Pikachu</p>
+      <p id=pokemonId>#25</p>
+      <img id=pokemonPicture src="pikachu.jpg">
+    </div>
+    
+    <div id=rightContainer>
+      
+      <button type=button class=button id=stats>Stats</button>
+      
+      <div id=pokemonStatContainer>
+        <p>Type: <span>Electric</span></p>
+        <p>Generation: <span>1</span></p>
+        <ul>Regional Numbers:
+          <li>100</li>
+          <li>200</li>
+          <li>300</li>
+        </ul>
+        <p>
+          Description: 
+          <span>
+            <br/>
+            Pikachu, the Mouse Pokémon.
+            <br/>
+            It can generate electric attacks from the
+            <br/>
+            electric pouches located in both of its cheeks.
+          </span>
+        </p>
+      </div>
+
+      <button type=button class=button id=region>Region</button>
+      <button type=button class=button id=description>Description</button>
+    </div>
+    
+  </div>
+</body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script>
+    var showMenu = false;
+
+    $(document).ready(function() {
+
+        var pokedexCoverLeftSlideIn = {"left": "0px", "easing": "linear"};
+        var pokedexCoverLeftSlideOut = {"left": "-50%", "easing": "linear"};
+        var pokedexCoverRightSlideIn = {"right": "0px", "easing": "linear"};
+        var pokedexCoverRightSlideOut = {"right": "-50%", "easing": "linear"};
+
+        // when user clicks on the menu
+        $("#pokeball").click(function(event){
+            console.log("Event target: "  + event.target);
+            if(!showMenu) {
+                showMenu = true;
+                $("#pokedexcoverleft").animate(pokedexCoverLeftSlideOut, 2000);
+                $("#pokedexcoverleft").fadeOut();
+                $("#pokedexcoverright").animate(pokedexCoverRightSlideOut, 2000);
+                $("#pokedexcoverright").fadeOut();
+            }
+            $("#pokeball").fadeOut(2000);
+            $("#navigationBar").css("background-color", "#145cd2");
+        });
+
+    $("#pokeball").mouseenter(function(){
+    console.log("mouse over on menu icon.");
+    });
+      
+    });
+  
+  </script>
+</html>
